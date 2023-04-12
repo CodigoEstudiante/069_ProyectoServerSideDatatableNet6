@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+
+    <table id="tbempleado" class="table table-striped w-100">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+@section Scripts{
+    <!-- ============================================================
+    =ESTILOS PARA USO DE DATATABLES JS
+    ===============================================================-->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+
+<!-- ============================================================
+=LIBRERIAS PARA USO DE DATATABLES JS
+===============================================================-->
+<script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>        
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script> 
+
+
+<script>
+
+    $(document).ready(function(){
+    
+            $("#tbempleado").DataTable({
+                "processing":true,
+                "serverSide": true,
+                "ajax":{
+                   "url": "@Url.Action("ObtenerEmpleado","Home")",
+                   "type":"POST",
+                   "datatype":"json"
+                },
+                "columns":[
+                    {"data":"nombre"},
+                    {"data":"correo"},
+                    {"data":"direccion"},
+                    {"data":"telefono"},
+                ]
+            
+
+            });
+    })
+
+</script>
+
+}
